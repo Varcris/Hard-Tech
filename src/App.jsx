@@ -1,11 +1,22 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import ProductList from "./pages/ProductList";
+import { ProductsContextProvider } from "./context/ProductsContext";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <h1>Hard-Tech</h1>
-    </>
+    <BrowserRouter>
+      <ProductsContextProvider>
+        <Routes>
+          <Route path="*" element={<h1>Not Found 404</h1>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<ProductList />} />
+        </Routes>
+      </ProductsContextProvider>
+    </BrowserRouter>
   );
 }
-
 export default App;
