@@ -1,11 +1,15 @@
 import "../styles/searchbar.css";
-const SearchBar = () => {
+export const SearchBar = () => {
   return (
-    <div className="searchbar">
-      <input type="text" placeholder="Buscar..." />
+    <form className="searchbar">
+      <input
+        onChange={() => {}}
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Smart TV, Notebook, zapatillas, etc..."
+      />
       <button type="submit">Buscar</button>
-    </div>
+    </form>
   );
 };
-
-export default SearchBar;
