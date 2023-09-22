@@ -10,8 +10,8 @@ import "./App.css";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <ProductsContextProvider>
+        <Header />
         <Routes>
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
