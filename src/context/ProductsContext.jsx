@@ -45,7 +45,7 @@ export const ProductsContextProvider = ({ children }) => {
       console.log("searchProducts en ejecución ---->");
       fetchProducts(endpoint.searchProducts(searchText, productsPerPage, skip)); // se ejecuta cuando se cambia el valor de searchText
     }
-  }, [searchText, skip]);
+  }, [searchText, currentPage]);
 
   const handleChangeCurrentPage = (page) => {
     console.log("handleChangeCurrentPage en ejecución");

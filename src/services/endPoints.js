@@ -5,8 +5,8 @@ export const endpoint = {
   getSingleProduct(id) {
     return `products/${id}`;
   },
-  searchProducts(query) {
-    return `products/search?q=${query}`;
+  searchProducts(query, limit, skip) {
+    return `products/search?q=${query}&limit=${limit}&skip=${skip}`;
   },
 };
 
