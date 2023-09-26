@@ -2,10 +2,15 @@ import { useContext, useState } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import ProductDescription from "../pages/ProductDescription";
 import "../styles/productList.css";
+import { Pagination } from "../components/Pagination";
 
 const ProductList = () => {
-  const { products, isloading, error } = useContext(ProductsContext);
+  const { products, isloading, error, currentPage, productsPerPage } =
+    useContext(ProductsContext);
   const [sortBy, setSortBy] = useState("");
+  const totalProducts = products.length;
+  const lastIndex = currentPage * productsPerPage; // Índice del último producto de la página actual
+  const firstIndex = lastIndex - productsPerPage; // Índice del primer producto de la página actual
 
   const handleSort = (type) => {
     // Función para cambiar el tipo de ordenamiento
@@ -24,6 +29,7 @@ const ProductList = () => {
 
     return productsSorted;
   };
+
   return (
     <main>
       <h1>Product </h1>
@@ -35,18 +41,19 @@ const ProductList = () => {
           Precio DESC
         </button>
       </div>
-      <ul>
+      <div>
         {isloading ? ( // Si isLoading es true, muestra "Loading..."
           <div>Loading...</div>
         ) : error ? ( // Si isLoading es false y error es true, muestra el error
           <div>{error}</div>
         ) : (
           // Si isLoading y error son false, muestra los productos
-          sortedProducts(products).map((prod) => (
-            <ProductDescription key={prod.id} product={prod} />
-          ))
+          sortedProducts(products)
+            .map((prod) => <ProductDescription key={prod.id} product={prod} />)
+            .slice(firstIndex, lastIndex)
         )}
-      </ul>
+      </div>
+      <Pagination totalProducts={totalProducts} />
     </main>
   );
 };
