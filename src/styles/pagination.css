@@ -1,4 +1,15 @@
-.is-current {
-    background-color: rgba(25, 125, 232, 0.3);
 
+.pagination-link{
+    background-color: rgb(25, 125, 232);
+    color: white;
+    border: 1px solid rgb(25, 125, 232);
+    border-radius: 5px;
+    padding: 2px 4px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.is-current {
+    background-color: rgb(221, 197, 15);
+    color: black;
 }

@@ -42,8 +42,9 @@ export const Pagination = () => {
           <li key={nroPage}>
             <a
               onClick={() => onSpecificPage(nroPage)}
-              className={`pagination-link ${() =>
-                nroPage === currentPage ? "is-current" : ""}`}
+              className={`${
+                nroPage == currentPage ? "is-current" : ""
+              } pagination-link `}
             >
               {nroPage}
             </a>

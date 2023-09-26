@@ -7,28 +7,23 @@ export const ProductsContext = createContext(initialProduct); //
 
 // eslint-disable-next-line react/prop-types
 export const ProductsContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); // inicia en un arreglo vacio porque no hay productos
   const [isloading, setIsLoading] = useState(true); // inicia en true porque cuando se carga la pagina se esta cargando la data
   const [error, setError] = useState(null);
-  const [searchText, setSearchText] = useState("");
-
-  const [productsPerPage, setProductsPerPage] = useState(8); // limite de productos por pagina
+  const [searchText, setSearchText] = useState(""); // texto de busqueda
   const [currentPage, setCurrentPage] = useState(1); // pagina actual
-  const skip = (currentPage - 1) * productsPerPage; // cantidad de productos que se deben saltar para mostrar la pagina actual
   const [totalProducts, setTotalProducts] = useState(0); // cantidad total de productos
+  const productsPerPage = 8; // limite de productos por pagina
+  const skip = (currentPage - 1) * productsPerPage; // cantidad de productos que se deben saltar para mostrar la pagina actual
+
   const fetchProducts = async (query) => {
-    console.log("FetchProducts en ejecución ---->");
     let data = [];
     try {
       setError(null);
       setIsLoading(true);
-      console.log("await getData en ejecución ---->");
       data = await getData(query);
-      console.log("SetProducts en ejecución ---->");
       setProducts(data.products);
       setTotalProducts(data.total);
-      console.log("----> data");
-      console.log(data);
     } catch (error) {
       console.log(error);
       setError(error.message);
@@ -39,24 +34,18 @@ export const ProductsContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (searchText === "") {
-      console.log("getAllProducts en ejecución ---->");
-      fetchProducts(endpoint.getAllProducts(productsPerPage, skip)); // se ejecuta cuando se carga la pagina por primera vez y cuando se cambia el valor de limitPage o de skip
+      fetchProducts(endpoint.getAllProducts(productsPerPage, skip));
     } else {
-      console.log("searchProducts en ejecución ---->");
-      fetchProducts(endpoint.searchProducts(searchText, productsPerPage, skip)); // se ejecuta cuando se cambia el valor de searchText
+      fetchProducts(endpoint.searchProducts(searchText, productsPerPage, skip));
     }
-  }, [searchText, currentPage]);
+  }, [searchText, skip]);
 
   const handleChangeCurrentPage = (page) => {
-    console.log("handleChangeCurrentPage en ejecución");
     setCurrentPage(page);
-    console.log(page);
   };
 
   const handleChangeSearch = (searchText) => {
-    console.log("handleChangeSearch en ejecución");
     setSearchText(searchText);
-    console.log(searchText);
   };
   return (
     <ProductsContext.Provider

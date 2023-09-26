@@ -28,7 +28,7 @@ const ProductList = () => {
 
   return (
     <main>
-      <h1>Product </h1>
+      <h1>Productos</h1>
       <div className="mydiv">
         <button className="my-button" onClick={() => handleSort("ASC")}>
           Precio ASC
