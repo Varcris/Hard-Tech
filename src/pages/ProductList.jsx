@@ -5,12 +5,8 @@ import "../styles/productList.css";
 import { Pagination } from "../components/Pagination";
 
 const ProductList = () => {
-  const { products, isloading, error, currentPage, productsPerPage } =
-    useContext(ProductsContext);
+  const { products, isloading, error } = useContext(ProductsContext);
   const [sortBy, setSortBy] = useState("");
-  const totalProducts = products.length;
-  const lastIndex = currentPage * productsPerPage; // Índice del último producto de la página actual
-  const firstIndex = lastIndex - productsPerPage; // Índice del primer producto de la página actual
 
   const handleSort = (type) => {
     // Función para cambiar el tipo de ordenamiento
@@ -48,12 +44,12 @@ const ProductList = () => {
           <div>{error}</div>
         ) : (
           // Si isLoading y error son false, muestra los productos
-          sortedProducts(products)
-            .map((prod) => <ProductDescription key={prod.id} product={prod} />)
-            .slice(firstIndex, lastIndex)
+          sortedProducts(products).map((prod) => (
+            <ProductDescription key={prod.id} product={prod} />
+          ))
         )}
       </div>
-      <Pagination totalProducts={totalProducts} />
+      <Pagination />
     </main>
   );
 };

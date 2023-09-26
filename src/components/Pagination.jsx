@@ -1,11 +1,12 @@
-import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
+import "../styles/pagination.css";
 
 // eslint-disable-next-line react/prop-types
-export const Pagination = ({ totalProducts }) => {
-  const { productsPerPage, currentPage, handleChangeCurrentPage } =
+export const Pagination = () => {
+  const { productsPerPage, currentPage, onChangeCurrentPage, totalProducts } =
     useContext(ProductsContext);
+
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
@@ -13,19 +14,18 @@ export const Pagination = ({ totalProducts }) => {
 
   const onPrevPage = () => {
     if (currentPage > 1) {
-      handleChangeCurrentPage(currentPage - 1);
-      console.log(currentPage);
+      onChangeCurrentPage(currentPage - 1);
     }
   };
 
   const onNextPage = () => {
     if (currentPage < pageNumbers.length) {
-      handleChangeCurrentPage(currentPage + 1);
+      onChangeCurrentPage(currentPage + 1);
     }
   };
 
   const onSpecificPage = (nroPage) => {
-    handleChangeCurrentPage(nroPage);
+    onChangeCurrentPage(nroPage);
   };
 
   return (
@@ -36,6 +36,21 @@ export const Pagination = ({ totalProducts }) => {
       >
         Anterior
       </button>
+
+      <ul className="pagination-list">
+        {pageNumbers.map((nroPage) => (
+          <li key={nroPage}>
+            <a
+              onClick={() => onSpecificPage(nroPage)}
+              className={`pagination-link ${() =>
+                nroPage === currentPage ? "is-current" : ""}`}
+            >
+              {nroPage}
+            </a>
+          </li>
+        ))}
+      </ul>
+
       <button
         className={`pagination-next ${
           currentPage >= pageNumbers.length ? "is-disable" : ""
@@ -44,20 +59,6 @@ export const Pagination = ({ totalProducts }) => {
       >
         Siguiente
       </button>
-      <ul className="pagination-list">
-        {pageNumbers.map((nroPage) => (
-          <li key={nroPage}>
-            <NavLink
-              onClick={() => onSpecificPage(nroPage)}
-              className={`pagination-link ${
-                () =>  === currentPage ? "is-current" : ""
-              }`}
-            >
-              {nroPage}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
     </nav>
   );
 };

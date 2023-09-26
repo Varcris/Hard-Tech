@@ -11,11 +11,11 @@ export const ProductsContextProvider = ({ children }) => {
   const [isloading, setIsLoading] = useState(true); // inicia en true porque cuando se carga la pagina se esta cargando la data
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState("");
+
   const [productsPerPage, setProductsPerPage] = useState(8); // limite de productos por pagina
-  // const [skip, setSkip] = useState(0); // cantidad de productos que se deben saltar para mostrar la pagina actual
   const [currentPage, setCurrentPage] = useState(1); // pagina actual
-  const limit = 100; // limite de productos por consulta
   const skip = (currentPage - 1) * productsPerPage; // cantidad de productos que se deben saltar para mostrar la pagina actual
+  const [totalProducts, setTotalProducts] = useState(0); // cantidad total de productos
   const fetchProducts = async (query) => {
     console.log("FetchProducts en ejecución ---->");
     let data = [];
@@ -26,6 +26,7 @@ export const ProductsContextProvider = ({ children }) => {
       data = await getData(query);
       console.log("SetProducts en ejecución ---->");
       setProducts(data.products);
+      setTotalProducts(data.total);
       console.log("----> data");
       console.log(data);
     } catch (error) {
@@ -39,12 +40,12 @@ export const ProductsContextProvider = ({ children }) => {
   useEffect(() => {
     if (searchText === "") {
       console.log("getAllProducts en ejecución ---->");
-      fetchProducts(endpoint.getAllProducts(limit, skip)); // se ejecuta cuando se carga la pagina por primera vez y cuando se cambia el valor de limitPage o de skip
+      fetchProducts(endpoint.getAllProducts(productsPerPage, skip)); // se ejecuta cuando se carga la pagina por primera vez y cuando se cambia el valor de limitPage o de skip
     } else {
       console.log("searchProducts en ejecución ---->");
-      fetchProducts(endpoint.searchProducts(searchText, limit, skip)); // se ejecuta cuando se cambia el valor de searchText
+      fetchProducts(endpoint.searchProducts(searchText, productsPerPage, skip)); // se ejecuta cuando se cambia el valor de searchText
     }
-  }, [searchText]);
+  }, [searchText, skip]);
 
   const handleChangeCurrentPage = (page) => {
     console.log("handleChangeCurrentPage en ejecución");
@@ -65,6 +66,7 @@ export const ProductsContextProvider = ({ children }) => {
         error,
         productsPerPage,
         currentPage,
+        totalProducts,
         onChangeCurrentPage: handleChangeCurrentPage,
         onChangeSearch: handleChangeSearch,
       }}
