@@ -1,5 +1,7 @@
 // eslint-disable-next-line react/prop-types
-function ProductView({}) {
+import React from 'react';
+
+function ProductView() {
   return (
     <div>
       <h1>Product View</h1>
@@ -8,3 +10,7 @@ function ProductView({}) {
 }
 
 export default ProductView;
+
+
+
+
