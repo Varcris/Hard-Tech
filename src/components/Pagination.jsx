@@ -7,8 +7,9 @@ export const Pagination = () => {
   const { productsPerPage, currentPage, onChangeCurrentPage, totalProducts } =
     useContext(ProductsContext);
 
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
+  for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 

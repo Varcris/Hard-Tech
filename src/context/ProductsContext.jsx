@@ -13,8 +13,7 @@ export const ProductsContextProvider = ({ children }) => {
   const [searchText, setSearchText] = useState(""); // texto de busqueda
   const [currentPage, setCurrentPage] = useState(1); // pagina actual
   const [totalProducts, setTotalProducts] = useState(0); // cantidad total de productos
-  const productsPerPage = 8; // limite de productos por pagina
-  const skip = (currentPage - 1) * productsPerPage; // cantidad de productos que se deben saltar para mostrar la pagina actual
+  const productsPerPage = 4; // limite de productos por pagina
 
   const fetchProducts = async (query) => {
     let data = [];
@@ -34,11 +33,13 @@ export const ProductsContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (searchText === "") {
-      fetchProducts(endpoint.getAllProducts(productsPerPage, skip));
+      fetchProducts(endpoint.getAllProducts(currentPage, productsPerPage));
     } else {
-      fetchProducts(endpoint.searchProducts(searchText, productsPerPage, skip));
+      fetchProducts(
+        endpoint.searchProducts(searchText, currentPage, productsPerPage)
+      );
     }
-  }, [searchText, skip]);
+  }, [searchText, currentPage]);
 
   const handleChangeCurrentPage = (page) => {
     setCurrentPage(page);

@@ -1,12 +1,12 @@
 export const endpoint = {
-  getAllProducts(limit = 30, skip = 0) {
-    return `products?limit=${limit}&skip=${skip}`;
+  getAllProducts(page = 1, per_page = 4) {
+    return `products?page=${page}&per_page=${per_page}`;
   },
   getSingleProduct(id) {
     return `products/${id}`;
   },
-  searchProducts(query, limit, skip) {
-    return `products/search?q=${query}&limit=${limit}&skip=${skip}`;
+  searchProducts(query, page, per_page) {
+    return `products?category=${query}&limit=${limit}&skip=${skip}`;
   },
 };
 

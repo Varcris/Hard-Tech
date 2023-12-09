@@ -8,6 +8,5 @@ export const initialProduct = {
   stock: "",
   brand: "",
   category: "",
-  thumbnail: "",
   images: [],
 };
