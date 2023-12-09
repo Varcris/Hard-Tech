@@ -4,6 +4,10 @@ function Home() {
       <section>
         <h2>Pagina Principal</h2>
       </section>
+      
+      <div className="container">
+
+      </div>
     </main>
   );
 }

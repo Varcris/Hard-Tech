@@ -5,3 +5,9 @@
 | Cristian | Vargas   |
 |          |          |
 |          |          |
+| Nombre   | apellido |
+| -------- | -------- |
+| Milagros | Vallejo   |
+|          |          |
+|          |          |
+
