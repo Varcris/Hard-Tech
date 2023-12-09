@@ -1,11 +1,37 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import { Pagination } from "../components/Pagination";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { api } from "../services/axios";
 
 function ProductTable() {
-  const { products, isloading, error } = useContext(ProductsContext);
+  const { products, isloading, error, onNavigationChange } =
+    useContext(ProductsContext);
   console.log(products);
+  useEffect(() => {
+    onNavigationChange();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function deleteProduct(id) {
+    if (!window.confirm("¿Está seguro que desea eliminar el producto?")) {
+      return;
+    }
+    api
+      .delete(`/products/${id}`)
+      .then((res) => {
+        console;
+        alert(res.data.message);
+        onNavigationChange();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error al eliminar el producto");
+      })
+      .finally(() => {});
+  }
+
   return (
     <main>
       {isloading ? ( // Si isLoading es true, muestra "Loading..."
@@ -41,9 +67,9 @@ function ProductTable() {
                     <Link to={`/update-product/${product.id}`}>
                       <button>Editar</button>
                     </Link>
-                    <Link to={`/delete-product/${product.id}`}>
-                      <button>Eliminar</button>
-                    </Link>
+                    <button onClick={() => deleteProduct(product.id)}>
+                      Eliminar
+                    </button>
                   </td>
                 </tr>
               ))}

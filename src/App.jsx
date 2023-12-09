@@ -10,7 +10,6 @@ import ProductView from "./pages/ProductView";
 import ProductTable from "./pages/ProductTable";
 import UpdateProduct from "./pages/UpdateProduct";
 import CreateProduct from "./pages/CreateProduct";
-import DeleteProduct from "./pages/DeleteProduct";
 
 function App() {
   return (
@@ -24,9 +23,8 @@ function App() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductView />} />
           <Route path="/table-products" element={<ProductTable />} />
-          <Route path="/update-products/:id" element={<UpdateProduct />} />
+          <Route path="/update-product/:id" element={<UpdateProduct />} />
           <Route path="/create-product" element={<CreateProduct />} />
-          <Route path="/delete-product/:id" element={<DeleteProduct />} />
         </Routes>
       </ProductsContextProvider>
     </BrowserRouter>

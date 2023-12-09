@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import "../styles/productList.css";
@@ -6,13 +6,20 @@ import { Pagination } from "../components/Pagination";
 import { Link } from "react-router-dom";
 
 const ProductList = () => {
-  const { products, isloading, error } = useContext(ProductsContext);
+  const { products, isloading, error, onNavigationChange } =
+    useContext(ProductsContext);
   const [sortBy, setSortBy] = useState("");
   const handleSort = (type) => {
     // Función para cambiar el tipo de ordenamiento
     setSortBy(type);
   };
 
+  useEffect(() => {
+    onNavigationChange();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log(products);
   return (
     <main>
       <h1>Productos</h1>
