@@ -30,10 +30,10 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/cart"
+              to="/products/table"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
-              Cart
+              Administrar Productos
             </NavLink>
           </li>
         </ul>

@@ -7,6 +7,7 @@ import ProductList from "./pages/ProductList";
 import { ProductsContextProvider } from "./context/ProductsContext";
 import "./App.css";
 import ProductView from "./pages/ProductView";
+import ProductTable from "./pages/ProductTable";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<ProductView />} />
+          <Route patch="/products/table" element={<ProductTable />} />
         </Routes>
       </ProductsContextProvider>
     </BrowserRouter>

@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 const ProductList = () => {
   const { products, isloading, error } = useContext(ProductsContext);
   const [sortBy, setSortBy] = useState("");
-
+  console.log("Lista de Prodcutos");
+  console.log(products);
   const handleSort = (type) => {
     // Función para cambiar el tipo de ordenamiento
     setSortBy(type);
