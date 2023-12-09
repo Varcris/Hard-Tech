@@ -8,25 +8,10 @@ import { Link } from "react-router-dom";
 const ProductList = () => {
   const { products, isloading, error } = useContext(ProductsContext);
   const [sortBy, setSortBy] = useState("");
-  console.log("Lista de Prodcutos");
-  console.log(products);
   const handleSort = (type) => {
     // Función para cambiar el tipo de ordenamiento
     setSortBy(type);
   };
-
-  // ? El ordenamiento lo hace el backend, no es necesario hacerlo en el frontend
-  // const sortedProducts = (products) => {
-  //   let productsSorted = [...products]; // Clonamos el arreglo de productos para no modificarlo directamente
-  //   if (sortBy === "ASC") {
-  //     // Si el tipo de ordenamiento es ASC, ordena los productos de menor a mayor
-  //     productsSorted.sort((a, b) => a.price - b.price); // Orden ascendente
-  //   } else if (sortBy === "DESC") {
-  //     // Si el tipo de ordenamiento es DESC, ordena los productos de mayor a menor
-  //     productsSorted.sort((a, b) => b.price - a.price); // Orden descendente
-  //   }
-  //   return productsSorted;
-  // };
 
   return (
     <main>

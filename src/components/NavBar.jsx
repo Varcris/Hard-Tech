@@ -30,7 +30,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/products/table"
+              to="/table-products"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               Administrar Productos
