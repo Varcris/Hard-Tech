@@ -1,5 +1,7 @@
 function CreateProduct() {
-  return <div>CreateProduct</div>;
+  return <div>CreateProduct
+    
+  </div>;
 }
 
 export default CreateProduct;
