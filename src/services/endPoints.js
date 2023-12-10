@@ -6,7 +6,7 @@ export const endpoint = {
     return `products/${id}`;
   },
   searchProducts(query, page, per_page) {
-    return `products?category=${query}&limit=${limit}&skip=${skip}`;
+    return `products?category=${query}&page=${page}&per_page=${per_page}`;
   },
 };
 
