@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 function CreateProduct() {
-  // No necesitas retornar CreateProduct, ya que parece ser un componente funcional.
-
-  const [products, setProducts] = useState([]);
+  
+const [products, setProducts] = useState([]);
 
   const ProductTable = () => {
     const [newProduct, setNewProduct] = useState({
@@ -13,7 +12,7 @@ function CreateProduct() {
     });
 
     const handleAddProduct = () => {
-      // Clonar el array de productos y añadir el nuevo producto
+      // Añadir el nuevo producto
       const updatedProducts = [...products, newProduct];
 
       // Actualizar el estado de productos con el nuevo array
