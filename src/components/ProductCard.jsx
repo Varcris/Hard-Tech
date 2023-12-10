@@ -2,6 +2,7 @@
 function ProductCard({ product }) {
   return (
     <div className="product-card">
+      {console.log(product)}
       <img src={product.images[0].image_url} />
       <p>
         <b>{product.title}</b>

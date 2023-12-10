@@ -68,6 +68,15 @@ button:focus-visible {
   }
 }
 
+.createProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  gap: 1em;
+}
+
 .updateProduct {
   display: grid;
   grid-template-columns: 1fr 1fr;

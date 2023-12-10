@@ -41,9 +41,18 @@ function ProductTable() {
       ) : (
         // Si isLoading y error son false, muestra los productos
         <>
-          <Link to={`/create`}>
-            <button>Crear producto</button>
-          </Link>
+          <div>
+            <Link to={`/create-product`}>
+              <button>Crear producto</button>
+            </Link>
+            <Link>
+              <button>Agregar categoria</button>
+            </Link>
+            <Link>
+              <button>Eliminar categoria</button>
+            </Link>
+          </div>
+
           <table>
             <thead>
               <tr>
