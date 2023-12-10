@@ -14,7 +14,7 @@ export const ProductsContextProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1); // pagina actual
   const [totalProducts, setTotalProducts] = useState(0); // cantidad total de productos
   const productsPerPage = 4; // limite de productos por pagina
-
+  const [navigationChange, setNavigationChange] = useState(false);
   const fetchProducts = async (query) => {
     let data = [];
     try {
@@ -39,7 +39,7 @@ export const ProductsContextProvider = ({ children }) => {
         endpoint.searchProducts(searchText, currentPage, productsPerPage)
       );
     }
-  }, [searchText, currentPage]);
+  }, [searchText, currentPage, navigationChange]);
 
   const handleChangeCurrentPage = (page) => {
     setCurrentPage(page);
@@ -48,6 +48,11 @@ export const ProductsContextProvider = ({ children }) => {
   const handleChangeSearch = (searchText) => {
     setSearchText(searchText);
   };
+
+  const handleNavigationChange = () => {
+    setNavigationChange(!navigationChange);
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -59,6 +64,7 @@ export const ProductsContextProvider = ({ children }) => {
         totalProducts,
         onChangeCurrentPage: handleChangeCurrentPage,
         onChangeSearch: handleChangeSearch,
+        onNavigationChange: handleNavigationChange,
       }}
     >
       {children}

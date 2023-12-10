@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function ProductCard({ product }) {
   return (
     <div className="product-card">
